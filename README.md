@@ -18,6 +18,52 @@
 - **Distributed Database Links**
 - **Triggers and Procedures**
 - **Views and Cursors**
+## Global Schema
+The global schema defines how the data is distributed and how tables are related across different sites. It includes the following key tables:
+
+1. **Laptop (pid, brand, graphics, price, SID, BranchID)**
+2. **Specification1 (pid, memory, storage, cpu_speed, battery, display)**
+3. **Specification2 (pid, memory, storage, cpu_speed, battery, display)**
+4. **Order_D (CID, pid, price)**
+5. **Branch (BranchID, branch_name, location)**
+6. **Customer (CID, name, contact_info)**
+7. **Top_Selling (brand, popularity)**
+8. **Seller_Sold (pid, seller_id, sold_count)**
+
+## Fragmentation Schema
+
+### Site 1
+- **Laptop (pid, brand, graphics, price, SID, BranchID)**
+- **Specification1 (pid, memory, storage, cpu_speed, battery, display)**
+- **Top_Customer (CID, total_purchase)**
+- **Top_Selling_Brand (brand, popularity)**
+- **Seller_Sold (pid, seller_id, sold_count)**
+- **View (view_id, brand, graphics, price, SID, BranchID)**
+
+### Site 2
+- **Specification2 (pid, memory, storage, cpu_speed, battery, display)**
+- **Distance2 (pid, df_memory, df_storage, df_cpu_speed, df_battery, df_display)**
+- **Prediction (pid, predicted_price, predicted_specs)**
+- **Connection (site_link)**
+- **Distance1 (pid, df_memory, df_storage, df_cpu_speed, df_battery, df_display)**
+
+## Allocation Schema
+
+### At Site 1:
+- **Laptop**
+- **Specification1**
+- **Top_Customer**
+- **Top_Selling_Brand**
+- **Seller_Sold**
+- **View**
+
+### At Site 2:
+- **Specification2**
+- **Distance2**
+- **Prediction**
+- **Distance1**
+- **Connection**
+
 
 ## File Descriptions
 
